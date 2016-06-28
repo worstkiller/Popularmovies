@@ -5,7 +5,7 @@
     <string name="pref_list_title">Sort Movies By</string>
     <string name="pref_list_desc">Sorts Movie on the basis of preference</string>
     <string name="pref_key">sort_order</string>
-    <string name="pref_default_value">popularity.desc</string>
+    <string name="pref_default_value">popular</string>
     <string name="details_overview">Overview of the Movie</string>
     <string name="details_movie_title">Whiplash</string>
     <string name="details_movie_rating">7.5</string>
