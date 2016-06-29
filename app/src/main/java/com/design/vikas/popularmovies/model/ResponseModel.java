@@ -1,5 +1,7 @@
 package com.design.vikas.popularmovies.model;
 
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 

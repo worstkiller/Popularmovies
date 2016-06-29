@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.design.vikas.popularmovies.R;
+import com.design.vikas.popularmovies.model.ResponseDetailModel;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -51,11 +53,13 @@ public class DetailsFragment extends Fragment {
     private void getData(Bundle bundle) {
         //get bundle data
         bundle =  getArguments();
-        title = bundle.getString(HomeFragment.KEY_TITLE);
-        desc =  bundle.getString(HomeFragment.KEY_DESC);
-        release = bundle.getString(HomeFragment.KEY_RELEASE_DATE);
-        rating = bundle.getString(HomeFragment.KEY_RATING);
-        image = bundle.getString(HomeFragment.KEY_IMAGE_LINK);
+        ResponseDetailModel detailModel = bundle.getParcelable(HomeFragment.KEY_PARCEL);
+        title = detailModel.getOriginalTitle();
+        desc =  detailModel.getOverview();
+        release = detailModel.getReleaseDate();
+        rating = String.valueOf(detailModel.getVoteAverage());
+        image = detailModel.getPosterPath();
+        Log.d("parcel data",detailModel.getTitle()+"");
     }
 
     private void bindViews(View view) {

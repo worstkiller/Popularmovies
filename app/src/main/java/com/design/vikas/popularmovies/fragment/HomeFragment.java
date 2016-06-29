@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,11 +49,7 @@ public class HomeFragment extends Fragment {
     MoviesInterface moviesInterface;
     String stringSortValue ;
     SharedPreferences preferences;
-    static String KEY_TITLE = "title";
-    static String KEY_DESC = "description";
-    static String KEY_RATING = "rating";
-    static String KEY_RELEASE_DATE = "release";
-    static String KEY_IMAGE_LINK = "IMAGE";
+    static String KEY_PARCEL = "myMovieParcel";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,12 +77,7 @@ public class HomeFragment extends Fragment {
 
                   if (v.getId() == R.id.ivMoviesPoster) {
                     Bundle bundle = new Bundle();
-                    bundle.putString(KEY_TITLE, detailModels.get(position).getTitle());
-                    bundle.putString(KEY_DESC, detailModels.get(position).getOverview());
-                    bundle.putString(KEY_RELEASE_DATE, detailModels.get(position).getReleaseDate());
-                    bundle.putString(KEY_RATING, String.valueOf(detailModels.get(position).getVoteAverage()));
-                    bundle.putString(KEY_IMAGE_LINK, detailModels.get(position).getPosterPath());
-
+                    bundle.putParcelable(KEY_PARCEL,detailModels.get(position));
                     DetailsFragment detailsFragment = new DetailsFragment();
                     detailsFragment.setArguments(bundle);
 
@@ -128,7 +118,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
 
-                Toast.makeText(getActivity(),"data could not be loaded",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),R.string.toast_msg_data_load_failure,Toast.LENGTH_SHORT).show();
 
             }
         });
